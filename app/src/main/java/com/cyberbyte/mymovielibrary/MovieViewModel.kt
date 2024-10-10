@@ -7,7 +7,8 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
 class MovieViewModel(
-    private val fetchMoviesUseCase: FetchMoviesUseCase
+    private val getMoviesFromApiUseCase: GetMoviesFromApiUseCase,
+
 ): ViewModel() {
 
     private val _movies = MutableLiveData<List<Movie>>()
@@ -15,7 +16,9 @@ class MovieViewModel(
 
     fun loadMovies() {
         viewModelScope.launch {
-            _movies.value = fetchMoviesUseCase.invoke()
+            _movies.value = getMoviesFromApiUseCase.invoke()
         }
     }
+
+
 }
