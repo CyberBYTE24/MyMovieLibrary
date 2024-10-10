@@ -31,13 +31,27 @@ val appModule = DI.Module("appModule") {
         instance<Retrofit>().create(MovieApiService::class.java)
     }
 
+    bind<MovieRemoteDataSource>() with singleton {
+        MovieRemoteDataSource(instance())
+    }
+    bind<MovieDao>() with singleton {
+        instance<MovieDatabase>().movieDao()
+    }
+
+    bind<MovieLocalDataSource>() with singleton {
+        MovieLocalDataSource(instance())
+    }
+
     // Repository
     bind<MovieRepository>() with singleton {
         MovieRepositoryImpl(instance(), instance())
     }
 
+
+
     // Use Cases
     bind<GetMoviesFromApiUseCase>() with singleton { GetMoviesFromApiUseCase(instance()) }
     bind<GetMovieByIdFromApiUseCase>() with singleton { GetMovieByIdFromApiUseCase(instance()) }
+    bind<GetMoviesFromDbUseCase>() with singleton { GetMoviesFromDbUseCase(instance()) }
     bind<SaveMoviesToDbUseCase>() with singleton { SaveMoviesToDbUseCase(instance()) }
 }

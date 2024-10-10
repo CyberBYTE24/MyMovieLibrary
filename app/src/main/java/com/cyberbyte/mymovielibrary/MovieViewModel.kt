@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
-class MovieViewModel(
+public class MovieViewModel(
     private val getMoviesFromApiUseCase: GetMoviesFromApiUseCase,
     private val getMovieByIdFromApiUseCase: GetMovieByIdFromApiUseCase,
     private val saveMoviesToDbUseCase: SaveMoviesToDbUseCase,
