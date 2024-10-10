@@ -37,5 +37,7 @@ val appModule = DI.Module("appModule") {
     }
 
     // Use Cases
-    bind<FetchMoviesUseCase>() with singleton { FetchMoviesUseCase(instance()) }
+    bind<GetMoviesFromApiUseCase>() with singleton { GetMoviesFromApiUseCase(instance()) }
+    bind<GetMovieByIdFromApiUseCase>() with singleton { GetMovieByIdFromApiUseCase(instance()) }
+    bind<SaveMoviesToDbUseCase>() with singleton { SaveMoviesToDbUseCase(instance()) }
 }
