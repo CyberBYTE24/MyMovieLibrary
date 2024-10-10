@@ -7,15 +7,18 @@ class MovieRepositoryImpl(
 
     override suspend fun getMoviesFromApi(): List<Movie> {
         val movies = remoteDataSource.fetchMovies()
-        saveMoviesToDb(movies)
         return movies
     }
 
-    override suspend fun getMoviesFromDb(): List<Movie> {
+    override suspend fun getMovieById(id: Int): Movie {
+        return remoteDataSource.fetchMovieById(id)
+    }
+
+    override suspend fun getMoviesFromDb(): List<MovieEntity> {
         return localDataSource.getMovies()
     }
 
-    override suspend fun saveMoviesToDb(movies: List<Movie>) {
+    override suspend fun saveMoviesToDb(movies: List<MovieEntity>) {
         localDataSource.saveMovies(movies)
     }
 }

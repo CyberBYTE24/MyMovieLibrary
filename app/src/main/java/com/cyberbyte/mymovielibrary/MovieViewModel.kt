@@ -15,7 +15,7 @@ class MovieViewModel(
 
     fun loadMovies() {
         viewModelScope.launch {
-            _movies.value = fetchMoviesUseCase.execute()
+            _movies.value = fetchMoviesUseCase.invoke()
         }
     }
 }

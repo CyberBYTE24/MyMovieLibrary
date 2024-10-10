@@ -1,11 +1,11 @@
 package com.cyberbyte.mymovielibrary
 
 class MovieLocalDataSource(private val movieDao: MovieDao) {
-    suspend fun getMovies(): List<Movie> {
+    suspend fun getMovies(): List<MovieEntity> {
         return movieDao.getAllMovies()
     }
 
-    suspend fun saveMovies(movies: List<Movie>) {
+    suspend fun saveMovies(movies: List<MovieEntity>) {
         movieDao.insertMovies(movies)
     }
 }

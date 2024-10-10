@@ -5,4 +5,6 @@ import retrofit2.http.GET
 interface MovieApiService {
     @GET("movies")
     suspend fun getMovies(): List<Movie>
+
+    suspend fun getMovieById(id: Int): Movie
 }
