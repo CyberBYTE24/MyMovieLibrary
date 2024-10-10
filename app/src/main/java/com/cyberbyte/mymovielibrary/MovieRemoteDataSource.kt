@@ -1,7 +1,7 @@
 package com.cyberbyte.mymovielibrary
 
 class MovieRemoteDataSource(private val movieApiService: MovieApiService) {
-    suspend fun fetchMovies(): List<Movie> {
+    suspend fun fetchMovies(): MovieList {
         return movieApiService.getMovies()
     }
 

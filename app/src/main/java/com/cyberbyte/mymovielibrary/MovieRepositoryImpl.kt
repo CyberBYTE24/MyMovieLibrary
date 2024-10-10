@@ -5,7 +5,7 @@ class MovieRepositoryImpl(
     private val localDataSource: MovieLocalDataSource
 ): MovieRepository {
 
-    override suspend fun getMoviesFromApi(): List<Movie> {
+    override suspend fun getMoviesFromApi(): MovieList {
         val movies = remoteDataSource.fetchMovies()
         return movies
     }

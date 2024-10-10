@@ -6,15 +6,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
-public class MovieViewModel(
+class MovieViewModel(
     private val getMoviesFromApiUseCase: GetMoviesFromApiUseCase,
     private val getMovieByIdFromApiUseCase: GetMovieByIdFromApiUseCase,
     private val saveMoviesToDbUseCase: SaveMoviesToDbUseCase,
     private val getMoviesFromDbUseCase: GetMoviesFromDbUseCase
 ): ViewModel() {
 
-    private val _movies = MutableLiveData<List<Movie>>()
-    val movies: LiveData<List<Movie>> get() = _movies
+    private val _movies = MutableLiveData<MovieList>()
+    val movies: LiveData<MovieList> get() = _movies
 
     private val _favoriteMovies = MutableLiveData<List<MovieEntity>>()
     val favoriteMovies: LiveData<List<MovieEntity>> get() = _favoriteMovies
