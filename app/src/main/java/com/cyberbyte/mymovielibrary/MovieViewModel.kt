@@ -9,7 +9,8 @@ import kotlinx.coroutines.launch
 class MovieViewModel(
     private val getMoviesFromApiUseCase: GetMoviesFromApiUseCase,
     private val getMovieByIdFromApiUseCase: GetMovieByIdFromApiUseCase,
-    private val saveMoviesToDbUseCase: SaveMoviesToDbUseCase
+    private val saveMoviesToDbUseCase: SaveMoviesToDbUseCase,
+    private val getMoviesFromDbUseCase: GetMoviesFromDbUseCase
 ): ViewModel() {
 
     private val _movies = MutableLiveData<List<Movie>>()
@@ -25,7 +26,13 @@ class MovieViewModel(
     }
     fun loadFavoriteMovies() {
         viewModelScope.launch {
-            _movies.value = getMoviesFromApiUseCase.invoke()
+            _favoriteMovies.value = getMoviesFromDbUseCase.invoke()
+        }
+    }
+
+    fun saveFavoriteMovies(movies: List<MovieEntity>) {
+        viewModelScope.launch {
+            saveMoviesToDbUseCase.invoke(_favoriteMovies.value!!)
         }
     }
 
