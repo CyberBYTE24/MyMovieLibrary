@@ -1,4 +1,4 @@
-package com.cyberbyte.mymovielibrary
+package com.cyberbyte.mymovielibrary.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

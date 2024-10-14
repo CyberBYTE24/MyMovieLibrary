@@ -1,5 +1,16 @@
 <resources>
     <string name="app_name">MyMovieLibrary</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="movies">Библиотека Кинопоиск</string>">
+    <string name="favorites">Избранное</string>">
+    <string name="settings">Настройки</string>">
+    <string name="nav_header_desc">Библиотека фильмов</string>
+    <string name="nav_header_title">Библиотека фильмов</string>
+    <string name="nav_header_subtitle">Управляй своей коллекцией фильмов</string>
+
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

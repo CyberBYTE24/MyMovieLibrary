@@ -1,7 +1,18 @@
-package com.cyberbyte.mymovielibrary
+package com.cyberbyte.mymovielibrary.application
 
 import android.app.Application
 import androidx.room.Room
+import com.cyberbyte.mymovielibrary.MovieApiService
+import com.cyberbyte.mymovielibrary.MovieLocalDataSource
+import com.cyberbyte.mymovielibrary.MovieRemoteDataSource
+import com.cyberbyte.mymovielibrary.MovieRepository
+import com.cyberbyte.mymovielibrary.MovieRepositoryImpl
+import com.cyberbyte.mymovielibrary.SaveMoviesToDbUseCase
+import com.cyberbyte.mymovielibrary.data.MovieDao
+import com.cyberbyte.mymovielibrary.data.MovieDatabase
+import com.cyberbyte.mymovielibrary.useCases.GetMovieByIdFromApiUseCase
+import com.cyberbyte.mymovielibrary.useCases.GetMoviesFromApiUseCase
+import com.cyberbyte.mymovielibrary.useCases.GetMoviesFromDbUseCase
 import okhttp3.OkHttpClient
 import org.kodein.di.DI
 import org.kodein.di.bind

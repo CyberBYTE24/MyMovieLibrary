@@ -1,4 +1,4 @@
-package com.cyberbyte.mymovielibrary
+package com.cyberbyte.mymovielibrary.application
 
 import android.app.Application
 import org.kodein.di.DI

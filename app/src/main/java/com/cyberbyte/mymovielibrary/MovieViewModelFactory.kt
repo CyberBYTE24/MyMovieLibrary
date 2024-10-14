@@ -2,6 +2,9 @@ package com.cyberbyte.mymovielibrary
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.cyberbyte.mymovielibrary.useCases.GetMovieByIdFromApiUseCase
+import com.cyberbyte.mymovielibrary.useCases.GetMoviesFromApiUseCase
+import com.cyberbyte.mymovielibrary.useCases.GetMoviesFromDbUseCase
 
 class MovieViewModelFactory(
     private val getMoviesFromApiUseCase: GetMoviesFromApiUseCase,

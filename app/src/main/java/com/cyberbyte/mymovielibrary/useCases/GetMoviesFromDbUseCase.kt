@@ -1,4 +1,7 @@
-package com.cyberbyte.mymovielibrary
+package com.cyberbyte.mymovielibrary.useCases
+
+import com.cyberbyte.mymovielibrary.data.MovieEntity
+import com.cyberbyte.mymovielibrary.MovieRepository
 
 
 class GetMoviesFromDbUseCase(private val repository: MovieRepository) {

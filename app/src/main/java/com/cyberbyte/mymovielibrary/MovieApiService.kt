@@ -1,5 +1,7 @@
 package com.cyberbyte.mymovielibrary
 
+import com.cyberbyte.mymovielibrary.models.Movie
+import com.cyberbyte.mymovielibrary.models.MovieList
 import retrofit2.http.GET
 import retrofit2.http.Headers
 

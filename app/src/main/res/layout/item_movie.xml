@@ -1,32 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <!-- Variables to bind data can go here -->
+
         <variable
             name="movie"
-            type="com.cyberbyte.mymovielibrary.Movie" />
+            type="com.cyberbyte.mymovielibrary.models.Movie" />
+
+        <variable
+            name="listener"
+            type="com.cyberbyte.mymovielibrary.MovieListener" />
     </data>
 
-    <LinearLayout
-        android:id="@+id/root"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_margin="5dp"
+        android:onClick="@{() -> listener.onMovieClicked(movie)}"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp">
 
-        <TextView
-            android:id="@+id/titleTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{movie.title}" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
 
-        <TextView
-            android:id="@+id/overviewTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{movie.description}" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/image_view_movie_image"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="H, 1:0.7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:setImage="@{movie.poster.url}"
+                tools:src="@tools:sample/avatars" />
 
-        <!-- Add other UI elements here -->
-    </LinearLayout>
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/image_view_favourite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:onClick="@{() -> listener.onFavouriteClicked(movie)}"
+                android:src="@drawable/ic_favorite_border"
+                app:setFavouriteCondition="@{movie.favourite}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:setTitle="@{movie.title}"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/text_view_date"
+                app:layout_constraintEnd_toStartOf="@+id/image_view_favourite"
+                app:layout_constraintStart_toEndOf="@+id/image_view_movie_image"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="The Shawshank Redemption" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:setReleaseDate="@{movie.releaseDate}"
+                app:layout_constraintBottom_toBottomOf="@+id/text_view_rating"
+                app:layout_constraintStart_toStartOf="@+id/text_view_name"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_name"
+                tools:text="1994" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:setRating="@{movie.rating.kinopoisk}"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/text_view_date"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_date"
+                tools:text="Rating: 9.2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 </layout>
