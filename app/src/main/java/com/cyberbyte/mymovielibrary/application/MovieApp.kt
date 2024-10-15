@@ -7,12 +7,14 @@ import com.cyberbyte.mymovielibrary.MovieLocalDataSource
 import com.cyberbyte.mymovielibrary.MovieRemoteDataSource
 import com.cyberbyte.mymovielibrary.MovieRepository
 import com.cyberbyte.mymovielibrary.MovieRepositoryImpl
-import com.cyberbyte.mymovielibrary.SaveMoviesToDbUseCase
+import com.cyberbyte.mymovielibrary.useCases.SaveMoviesToDbUseCase
 import com.cyberbyte.mymovielibrary.data.MovieDao
 import com.cyberbyte.mymovielibrary.data.MovieDatabase
+import com.cyberbyte.mymovielibrary.ui.viewmodels.MovieViewModel
 import com.cyberbyte.mymovielibrary.useCases.GetMovieByIdFromApiUseCase
 import com.cyberbyte.mymovielibrary.useCases.GetMoviesFromApiUseCase
 import com.cyberbyte.mymovielibrary.useCases.GetMoviesFromDbUseCase
+import com.cyberbyte.mymovielibrary.useCases.RemoveMoviesFromDbUseCase
 import okhttp3.OkHttpClient
 import org.kodein.di.DI
 import org.kodein.di.DIAware
@@ -61,13 +63,14 @@ class MovieApp : Application(), DIAware {
             MovieRepositoryImpl(instance(), instance())
         }
 
-
-
         // Use Cases
         bind<GetMoviesFromApiUseCase>() with singleton { GetMoviesFromApiUseCase(instance()) }
         bind<GetMovieByIdFromApiUseCase>() with singleton { GetMovieByIdFromApiUseCase(instance()) }
         bind<GetMoviesFromDbUseCase>() with singleton { GetMoviesFromDbUseCase(instance()) }
         bind<SaveMoviesToDbUseCase>() with singleton { SaveMoviesToDbUseCase(instance()) }
+        bind<RemoveMoviesFromDbUseCase>() with singleton { RemoveMoviesFromDbUseCase(instance()) }
+
+        bind<MovieViewModel>() with singleton { MovieViewModel(instance(), instance(), instance(), instance())  }
     }
 
 }

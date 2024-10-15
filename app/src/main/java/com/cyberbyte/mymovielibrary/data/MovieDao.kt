@@ -12,4 +12,7 @@ interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMovies(movies: List<MovieEntity>)
+
+    @androidx.room.Delete
+    suspend fun deleteMovies(movies: List<MovieEntity>)
 }

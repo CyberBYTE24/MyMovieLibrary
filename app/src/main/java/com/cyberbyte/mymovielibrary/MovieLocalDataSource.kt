@@ -11,4 +11,8 @@ class MovieLocalDataSource(private val movieDao: MovieDao) {
     suspend fun saveMovies(movies: List<MovieEntity>) {
         movieDao.insertMovies(movies)
     }
+
+    suspend fun removeMovies(movies: List<MovieEntity>) {
+        movieDao.deleteMovies(movies)
+    }
 }

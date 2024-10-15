@@ -1,39 +1,30 @@
-package com.cyberbyte.mymovielibrary
-import android.content.Context
+package com.cyberbyte.mymovielibrary.ui.views
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil.bind
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.cyberbyte.mymovielibrary.ui.adapters.MovieAdapter
+import com.cyberbyte.mymovielibrary.MovieListener
+import com.cyberbyte.mymovielibrary.ui.viewmodels.MovieViewModel
 import com.cyberbyte.mymovielibrary.databinding.FragmentMainBinding
 import com.cyberbyte.mymovielibrary.models.Movie
-import com.cyberbyte.mymovielibrary.useCases.GetMovieByIdFromApiUseCase
-import com.cyberbyte.mymovielibrary.useCases.GetMoviesFromApiUseCase
-import com.cyberbyte.mymovielibrary.useCases.GetMoviesFromDbUseCase
+import com.cyberbyte.mymovielibrary.models.Poster
+import com.cyberbyte.mymovielibrary.models.Rating
 import org.kodein.di.DI
 import org.kodein.di.DIAware
 import org.kodein.di.android.x.closestDI
 import org.kodein.di.instance
 
-class MoviesFragment() : Fragment(), DIAware, MovieListener {
+class FavouriteFragment : Fragment(), DIAware, MovieListener {
 
     override val di: DI by closestDI()
 
-    private val getMoviesFromApiUseCase: GetMoviesFromApiUseCase by instance()
-    private val getMovieByIdFromApiUseCase: GetMovieByIdFromApiUseCase by instance()
-    private val getMoviesFromDbUseCase: GetMoviesFromDbUseCase by instance()
-    private val saveMoviesToDbUseCase: SaveMoviesToDbUseCase by instance()
-
     private lateinit var binding: FragmentMainBinding
     private lateinit var movieAdapter: MovieAdapter
-    private val viewModel: MovieViewModel by viewModels { MovieViewModelFactory(getMoviesFromApiUseCase, getMovieByIdFromApiUseCase, saveMoviesToDbUseCase, getMoviesFromDbUseCase) }
-
+    private val viewModel: MovieViewModel by instance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,8 +40,18 @@ class MoviesFragment() : Fragment(), DIAware, MovieListener {
         binding.recyclerViewMovie.layoutManager = LinearLayoutManager(context)
         binding.recyclerViewMovie.adapter = movieAdapter
 
-        viewModel.movies.observe(viewLifecycleOwner) { movies ->
-            movieAdapter.updateMovies(movies)
+        viewModel.favoriteMovies.observe(viewLifecycleOwner) { movies ->
+            movieAdapter.updateMovies(movies.map{
+                Movie(
+                    id = it.id,
+                    title = it.title,
+                    description = it.description,
+                    releaseDate = it.releaseDate,
+                    rating = Rating(kinopoisk = it.rating, imdb = 0.0f, filmCritics = 0.0f, russianFilmCritics = 0.0f),
+                    poster = Poster(url = it.posterUrl, previewUrl = ""),
+                    favourite = it.favourite
+                )
+            })
         }
 
         viewModel.loadMovies()
@@ -64,5 +65,6 @@ class MoviesFragment() : Fragment(), DIAware, MovieListener {
 
     override fun onFavouriteClicked(movie: Movie) {
         Toast.makeText(this.context, "Liked movie: ${movie.title}", Toast.LENGTH_SHORT).show()
+        viewModel.onFavouriteClicked(movie)
     }
 }

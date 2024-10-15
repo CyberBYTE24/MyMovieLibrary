@@ -1,4 +1,4 @@
-package com.cyberbyte.mymovielibrary
+package com.cyberbyte.mymovielibrary.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,13 +8,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.cyberbyte.mymovielibrary.MovieListener
+import com.cyberbyte.mymovielibrary.R
 import com.cyberbyte.mymovielibrary.databinding.ItemMovieBinding
 import com.cyberbyte.mymovielibrary.models.Movie
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
-import org.w3c.dom.Text
 
-class MovieAdapter(private var movies: List<Movie>, private var movieListener: MovieListener) : ListAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallback()) {
+class MovieAdapter(private var movies: List<Movie>, private var movieListener: MovieListener) : ListAdapter<Movie, MovieAdapter.MovieViewHolder>(
+    MovieDiffCallback()
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)

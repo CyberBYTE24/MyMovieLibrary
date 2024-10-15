@@ -10,25 +10,25 @@ data class Movie(
 
     @SerializedName("name")
     @Expose
-    val title: String,
+    val title: String?,
 
     @SerializedName("description")
     @Expose
-    val description: String,
+    val description: String?,
 
     @SerializedName("year")
     @Expose
-    val releaseDate: Int,
+    val releaseDate: Int?,
 
     @SerializedName("rating")
     @Expose
-    val rating: Rating,
+    val rating: Rating?,
 
     @SerializedName("poster")
     @Expose
-    val poster: Poster,
+    val poster: Poster?,
 
     @SerializedName("favourite")
     @Expose
-    val favourite: Boolean
+    var favourite: Boolean
 )

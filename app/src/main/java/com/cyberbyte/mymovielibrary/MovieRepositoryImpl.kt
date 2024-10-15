@@ -25,4 +25,8 @@ class MovieRepositoryImpl(
     override suspend fun saveMoviesToDb(movies: List<MovieEntity>) {
         localDataSource.saveMovies(movies)
     }
+
+    override suspend fun removeMoviesFromDb(movies: List<MovieEntity>) {
+        localDataSource.removeMovies(movies)
+    }
 }

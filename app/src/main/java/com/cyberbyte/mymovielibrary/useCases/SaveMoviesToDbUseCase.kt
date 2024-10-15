@@ -1,5 +1,6 @@
-package com.cyberbyte.mymovielibrary
+package com.cyberbyte.mymovielibrary.useCases
 
+import com.cyberbyte.mymovielibrary.MovieRepository
 import com.cyberbyte.mymovielibrary.data.MovieEntity
 
 class SaveMoviesToDbUseCase(private val repository: MovieRepository) {

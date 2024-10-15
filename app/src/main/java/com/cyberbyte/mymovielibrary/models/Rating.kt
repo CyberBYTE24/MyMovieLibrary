@@ -6,17 +6,17 @@ import com.google.gson.annotations.SerializedName
 data class Rating(
     @SerializedName("kp")
     @Expose
-    val kinopoisk: Float,
+    val kinopoisk: Float?,
 
     @SerializedName("imdb")
     @Expose
-    val imdb: Float,
+    val imdb: Float?,
 
     @SerializedName("filmCritics")
     @Expose
-    val filmCritics: Float,
+    val filmCritics: Float?,
 
     @SerializedName("russianFilmCritics")
     @Expose
-    val russianFilmCritics: Float
+    val russianFilmCritics: Float?
 )
