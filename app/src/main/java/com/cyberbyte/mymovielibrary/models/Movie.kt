@@ -10,7 +10,11 @@ data class Movie(
 
     @SerializedName("name")
     @Expose
-    val title: String?,
+    var title: String?,
+
+    @SerializedName("alternativeName")
+    @Expose
+    val alternativeName: String?,
 
     @SerializedName("description")
     @Expose

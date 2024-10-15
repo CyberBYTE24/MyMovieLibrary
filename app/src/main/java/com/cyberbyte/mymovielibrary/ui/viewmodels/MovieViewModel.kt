@@ -14,7 +14,6 @@ import kotlinx.coroutines.launch
 
 class MovieViewModel(
     private val getMoviesFromApiUseCase: GetMoviesFromApiUseCase,
-    //private val getMovieByIdFromApiUseCase: GetMovieByIdFromApiUseCase,
     private val saveMoviesToDbUseCase: SaveMoviesToDbUseCase,
     private val getMoviesFromDbUseCase: GetMoviesFromDbUseCase,
     private val removeMoviesFromDbUseCase: RemoveMoviesFromDbUseCase
@@ -31,6 +30,9 @@ class MovieViewModel(
             _movies.value = getMoviesFromApiUseCase.invoke().movies.map {
                 val isFavorite = _favoriteMovies.value?.any { favoriteMovie -> favoriteMovie.id == it.id } ?: false
                 it.favourite = isFavorite
+                if(it.title.isNullOrEmpty()){
+                    it.title = it.alternativeName
+                }
                 return@map it
             }.toMutableList()
         }
@@ -43,33 +45,27 @@ class MovieViewModel(
 
     private fun saveFavoriteMovies(movies: List<Movie>) {
         viewModelScope.launch {
-            for (movie in movies) {
-                movie.favourite = true
-                _favoriteMovies.value
-            }
             saveMoviesToDbUseCase.invoke(movies.map { movie ->
-                MovieEntity(
+                val entity = MovieEntity(
                     id = movie.id,
                     title = movie.title,
                     description = movie.description,
                     releaseDate = movie.releaseDate,
                     rating = movie.rating?.kinopoisk,
                     posterUrl = movie.poster?.url,
-                    favourite = true
-                )
+                    favourite = true)
+                _favoriteMovies.value?.add(entity)
+                entity
             })
         }
     }
 
     private fun removeFavoriteMovies(movies: List<Movie>) {
         viewModelScope.launch {
-            for(movie in movies){
-                movie.favourite = false
-
-            }
             val a = _favoriteMovies.value?.filter { entity ->
                 movies.any { movie -> movie.id == entity.id }
             }
+            _favoriteMovies.value?.removeAll(a!!)
             removeMoviesFromDbUseCase.invoke(a!!)
         }
     }

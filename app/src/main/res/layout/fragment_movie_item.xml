@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="movie"
+            type="com.cyberbyte.mymovielibrary.models.Movie" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".scene.main.MainActivity">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/image_view_movie_image"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="fitXY"
+            app:layout_constraintDimensionRatio="H, 1:0.7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/image_view_movie_image"
+            app:layout_constraintTop_toTopOf="@+id/image_view_movie_image"
+            app:setTitle="@{movie.title}"
+            tools:text="The Shawshank Redemption" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/text_view_name"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_name"
+            app:setReleaseDate="@{movie.releaseDate}"
+            tools:text="1994" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:setRating="@{movie.rating.kinopoisk}"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/text_view_date"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_date"
+            tools:text="Rating: 9.2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</layout>

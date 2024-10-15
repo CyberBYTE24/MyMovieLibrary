@@ -45,6 +45,7 @@ class FavouriteFragment : Fragment(), DIAware, MovieListener {
                 Movie(
                     id = it.id,
                     title = it.title,
+                    alternativeName = it.title,
                     description = it.description,
                     releaseDate = it.releaseDate,
                     rating = Rating(kinopoisk = it.rating, imdb = 0.0f, filmCritics = 0.0f, russianFilmCritics = 0.0f),
@@ -61,10 +62,13 @@ class FavouriteFragment : Fragment(), DIAware, MovieListener {
 
     override fun onMovieClicked(movie: Movie) {
         Toast.makeText(this.context, "Clicked on movie: ${movie.title}", Toast.LENGTH_SHORT).show()
+
+        movieAdapter.updateNotify()
     }
 
     override fun onFavouriteClicked(movie: Movie) {
         Toast.makeText(this.context, "Liked movie: ${movie.title}", Toast.LENGTH_SHORT).show()
         viewModel.onFavouriteClicked(movie)
+        movieAdapter.updateNotify()
     }
 }

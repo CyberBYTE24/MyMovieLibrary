@@ -49,11 +49,14 @@ class MoviesFragment : Fragment(), DIAware, MovieListener {
 
     override fun onMovieClicked(movie: Movie) {
         Toast.makeText(this.context, "Clicked on movie: ${movie.title}", Toast.LENGTH_SHORT).show()
+
+        movieAdapter.updateNotify()
     }
 
     override fun onFavouriteClicked(movie: Movie) {
         Toast.makeText(this.context, "Liked movie: ${movie.title}", Toast.LENGTH_SHORT).show()
         viewModel.onFavouriteClicked(movie)
 
+        movieAdapter.updateNotify()
     }
 }

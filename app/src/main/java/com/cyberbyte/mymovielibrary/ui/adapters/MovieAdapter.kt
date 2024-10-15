@@ -36,16 +36,21 @@ class MovieAdapter(private var movies: List<Movie>, private var movieListener: M
         notifyDataSetChanged()
     }
 
+    fun updateNotify(){
+        notifyDataSetChanged()
+    }
+
     companion object{
         @JvmStatic
         @BindingAdapter("setImage")
         fun setImage(imageView: ShapeableImageView, image: String?) {
             if (image == null) {
-                return
+                Glide.with(imageView.context).clear(imageView)
             }
             Glide.with(imageView.context)
                 .load(image)
                 .into(imageView)
+
         }
         @JvmStatic
         @BindingAdapter("setFavouriteCondition")
@@ -60,7 +65,7 @@ class MovieAdapter(private var movies: List<Movie>, private var movieListener: M
         @BindingAdapter("setTitle")
         fun setTitle(textView: TextView, title: String?) {
             if (title == null) {
-                textView.text = "no title"
+                textView.text = "Нет заголовка"
             } else {
                 textView.text = title
             }
@@ -69,7 +74,7 @@ class MovieAdapter(private var movies: List<Movie>, private var movieListener: M
         @BindingAdapter("setDescription")
         fun setDescription(textView: TextView, description: String?) {
             if (description == null) {
-                textView.text = "no description"
+                textView.text = "Нет описания"
             } else {
                 textView.text = description
             }
@@ -78,16 +83,16 @@ class MovieAdapter(private var movies: List<Movie>, private var movieListener: M
         @BindingAdapter("setRating")
         fun setRating(textView: MaterialTextView, rating: Float?) {
             if (rating == null) {
-                textView.text = "no rating"
+                textView.text = "Нет рейтинга"
             } else {
-                textView.text = "Rating: $rating"
+                textView.text = "Рейтинг на Кинопоиск: $rating"
             }
         }
         @JvmStatic
         @BindingAdapter("setReleaseDate")
         fun setReleaseDate(textView: TextView, year: Int?) {
             if (year == null) {
-                textView.text = "no data"
+                textView.text = "Год не указан"
             } else {
                 textView.text = "$year"
             }
