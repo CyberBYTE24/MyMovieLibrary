@@ -17,13 +17,14 @@ import org.kodein.di.DIAware
 import org.kodein.di.android.closestDI
 import org.kodein.di.android.subDI
 import org.kodein.di.instance
+import java.util.logging.Logger
 
 class MovieViewModel(
     private val getMoviesFromApiUseCase: GetMoviesFromApiUseCase,
     private val getMovieByIdFromApiUseCase: GetMovieByIdFromApiUseCase,
     private val saveMoviesToDbUseCase: SaveMoviesToDbUseCase,
     private val getMoviesFromDbUseCase: GetMoviesFromDbUseCase
-): ViewModel(), MovieListener {
+): ViewModel() {
 
     //TODO (DI implement in fragment)
     //override val di:DI by subDI(closestDI())
@@ -49,14 +50,6 @@ class MovieViewModel(
         viewModelScope.launch {
             saveMoviesToDbUseCase.invoke(_favoriteMovies.value!!)
         }
-    }
-
-    override fun onMovieClicked(movie: Movie) {
-        Toast.makeText(null, "Clicked", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onFavouriteClicked(movie: Movie) {
-        TODO("Not yet implemented")
     }
 
 }

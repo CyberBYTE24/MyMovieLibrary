@@ -11,10 +11,4 @@
         android:label="@string/movies"
         tools:layout="@layout/fragment_main" />
 
-    <fragment
-        android:id="@+id/nav_favorites"
-        android:name="com.cyberbyte.mymovielibrary.MoviesFragment"
-        android:label="@string/favorites"
-        tools:layout="@layout/fragment_main" />
-
 </navigation>

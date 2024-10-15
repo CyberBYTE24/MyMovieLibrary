@@ -14,7 +14,7 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 import org.w3c.dom.Text
 
-class MovieAdapter(private var movies: List<Movie>) : ListAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallback()) {
+class MovieAdapter(private var movies: List<Movie>, private var movieListener: MovieListener) : ListAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -23,6 +23,7 @@ class MovieAdapter(private var movies: List<Movie>) : ListAdapter<Movie, MovieAd
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.bind(movies[position])
+        holder.bind(movieListener)
     }
 
     override fun getItemCount(): Int = movies.size
@@ -95,6 +96,10 @@ class MovieAdapter(private var movies: List<Movie>) : ListAdapter<Movie, MovieAd
         fun bind(movie: Movie) {
             binding.movie = movie
             binding.executePendingBindings() // Ensures that the data is bound immediately
+        }
+        fun bind(listener: MovieListener){
+            binding.listener = listener
+            binding.executePendingBindings()
         }
     }
     class MovieDiffCallback : DiffUtil.ItemCallback<Movie>() {
