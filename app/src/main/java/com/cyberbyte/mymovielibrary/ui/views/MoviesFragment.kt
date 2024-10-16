@@ -5,9 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cyberbyte.mymovielibrary.ui.adapters.MovieAdapter
 import com.cyberbyte.mymovielibrary.MovieListener
+import com.cyberbyte.mymovielibrary.R
 import com.cyberbyte.mymovielibrary.ui.viewmodels.MovieViewModel
 import com.cyberbyte.mymovielibrary.databinding.FragmentMainBinding
 import com.cyberbyte.mymovielibrary.models.Movie
@@ -49,12 +51,17 @@ class MoviesFragment : Fragment(), DIAware, MovieListener {
 
     override fun onMovieClicked(movie: Movie) {
         Toast.makeText(this.context, "Clicked on movie: ${movie.title}", Toast.LENGTH_SHORT).show()
-
-        movieAdapter.updateNotify()
+        val bundle = Bundle()
+        bundle.putString("title", movie.title)
+        bundle.putString("description", movie.description)
+        bundle.putString("rating", movie.rating?.kinopoisk.toString())
+        bundle.putString("releaseDate", movie.releaseDate.toString())
+        bundle.putString("posterUrl", movie.poster?.url)
+        findNavController().navigate(R.id.nav_movie_item, bundle)
     }
 
     override fun onFavouriteClicked(movie: Movie) {
-        Toast.makeText(this.context, "Liked movie: ${movie.title}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this.context, "${if(movie.favourite) "Disliked" else "Liked"} movie: ${movie.title}", Toast.LENGTH_SHORT).show()
         viewModel.onFavouriteClicked(movie)
 
         movieAdapter.updateNotify()

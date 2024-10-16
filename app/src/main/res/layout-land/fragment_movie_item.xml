@@ -13,10 +13,12 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/image_view_movie_image"
             android:layout_width="0dp"
-            android:layout_height="200dp"
+            android:layout_height="0dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="H, 1:0.7"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -39,6 +41,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/text_view_name"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/text_view_name"
             app:layout_constraintTop_toBottomOf="@+id/text_view_name"
             tools:text="1994" />
@@ -48,10 +52,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="10dp"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/text_view_date"
             app:layout_constraintStart_toStartOf="@+id/text_view_date"
             app:layout_constraintTop_toBottomOf="@+id/text_view_date"
             tools:text="Rating: 9.2" />
@@ -59,13 +62,15 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_description"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/image_view_movie_image"
-            app:layout_constraintTop_toBottomOf="@+id/image_view_movie_image"
+            app:layout_constraintStart_toStartOf="@+id/text_view_rating"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_rating"
             tools:text="@tools:sample/lorem/random" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

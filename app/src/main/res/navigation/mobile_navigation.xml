@@ -9,11 +9,47 @@
         android:id="@+id/nav_movies"
         android:name="com.cyberbyte.mymovielibrary.ui.views.MoviesFragment"
         android:label="@string/movies"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_nav_movies_to_nav_movie_item"
+            app:destination="@id/nav_movie_item" />
+    </fragment>
     <fragment
         android:id="@+id/nav_favorites"
         android:name="com.cyberbyte.mymovielibrary.ui.views.FavouriteFragment"
         android:label="@string/favorites"
-        tools:layout="@layout/fragment_favourite" />
+        tools:layout="@layout/fragment_favourite" >
+        <action
+            android:id="@+id/action_nav_favorites_to_nav_movie_item"
+            app:destination="@id/nav_movie_item" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_movie_item"
+        android:name="com.cyberbyte.mymovielibrary.ui.views.MovieItemFragment"
+        android:label="@string/movie_item"
+        tools:layout="@layout/fragment_movie_item" >
+        <argument
+            android:name="title"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="Нет заголовка" />
+        <argument android:name="posterUrl"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="description"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="Нет описания" />
+        <argument
+            android:name="rating"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="нет информации" />
+        <argument
+            android:name="releaseDate"
+            app:nullable="true"
+            android:defaultValue="год неизвестен" />
+    </fragment>
 
 </navigation>
