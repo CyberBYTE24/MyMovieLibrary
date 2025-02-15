@@ -5,7 +5,7 @@ import com.cyberbyte.mymovielibrary.models.Movie
 import com.cyberbyte.mymovielibrary.models.MovieList
 
 interface MovieRepository {
-    suspend fun getMoviesFromApi(): MovieList
+    suspend fun getMoviesFromApi(page: Int): MovieList
     suspend fun getMoviesFromDb(): List<MovieEntity>
     suspend fun saveMoviesToDb(movies: List<MovieEntity>)
     suspend fun getMovieById(id: Int): Movie

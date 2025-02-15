@@ -3,17 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_movies">
+    app:startDestination="@+id/nav_favorites">
 
-    <fragment
-        android:id="@+id/nav_movies"
-        android:name="com.cyberbyte.mymovielibrary.ui.views.MoviesFragment"
-        android:label="@string/movies"
-        tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/action_nav_movies_to_nav_movie_item"
-            app:destination="@id/nav_movie_item" />
-    </fragment>
+
     <fragment
         android:id="@+id/nav_favorites"
         android:name="com.cyberbyte.mymovielibrary.ui.views.FavouriteFragment"
@@ -21,6 +13,18 @@
         tools:layout="@layout/fragment_favourite" >
         <action
             android:id="@+id/action_nav_favorites_to_nav_movie_item"
+            app:destination="@id/nav_movie_item" />
+        <action
+            android:id="@+id/action_nav_favorites_to_nav_movies"
+            app:destination="@id/nav_movies" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_movies"
+        android:name="com.cyberbyte.mymovielibrary.ui.views.MoviesFragment"
+        android:label="@string/movies"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_nav_movies_to_nav_movie_item"
             app:destination="@id/nav_movie_item" />
     </fragment>
     <fragment

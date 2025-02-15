@@ -27,7 +27,7 @@ class MovieViewModel(
     fun loadMovies() {
         loadFavoriteMovies()
         viewModelScope.launch {
-            _movies.value = getMoviesFromApiUseCase.invoke().movies.map {
+            _movies.value = getMoviesFromApiUseCase.invoke(1).movies.map {
                 val isFavorite = _favoriteMovies.value?.any { favoriteMovie -> favoriteMovie.id == it.id } ?: false
                 it.favourite = isFavorite
                 if(it.title.isNullOrEmpty()){

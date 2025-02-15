@@ -7,10 +7,10 @@ import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface MovieApiService {
-    @Headers("X-API-KEY: YF9XBHN-PA24TEB-H8VJD84-P5Z8CN9")
-    @GET("movie?page=1&limit=40&sortField=rating.kp&sortType=-1")
 
-    suspend fun getMovies(): MovieList
+    @Headers("X-API-KEY: YF9XBHN-PA24TEB-H8VJD84-P5Z8CN9")
+    @GET("movie?limit=20&sortField=rating.kp&sortType=-1")
+    suspend fun getMovies(@Query("page") page: Int): MovieList
 
     suspend fun getMovieById(id: Int): Movie
 }
