@@ -29,23 +29,6 @@ class FavouriteViewModel(
         initMoviesListFormApi()
     }
 
-    internal fun loadMovies(pageNum: Int){
-        loadMoviesFromApi(pageNum)
-    }
-
-    private fun loadMoviesFromApi(page: Int){
-        viewModelScope.launch {
-            _movies.value?.addAll(getMoviesFromApiUseCase.invoke(page).movies.map {
-                val isFavorite = _favoriteMovies.value?.any { favoriteMovie -> favoriteMovie.id == it.id } ?: false
-                it.favourite = isFavorite
-                if(it.title.isNullOrEmpty()){
-                    it.title = it.alternativeName
-                }
-                return@map it
-            })
-        }
-    }
-
     private fun initMoviesListFormApi(){
         viewModelScope.launch {
             _movies.value = getMoviesFromApiUseCase.invoke(1).movies.map {

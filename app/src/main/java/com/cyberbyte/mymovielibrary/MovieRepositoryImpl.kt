@@ -18,6 +18,10 @@ class MovieRepositoryImpl(
         return remoteDataSource.fetchMovieById(id)
     }
 
+    override suspend fun searchMoviesByNameFromApi(nameWildcard: String): MovieList{
+        return remoteDataSource.searchMoviesByName(nameWildcard)
+    }
+
     override suspend fun getMoviesFromDb(): List<MovieEntity> {
         return localDataSource.getMovies()
     }
