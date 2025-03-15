@@ -56,13 +56,13 @@ class FavouriteFragment : Fragment(), DIAware, MovieListener {
                 )
             })
         }
-        viewModel.loadMovies()
+        viewModel.initMoviesList()
 
         return root
     }
 
     override fun onMovieClicked(movie: Movie) {
-        Toast.makeText(this.context, "Clicked on movie: ${movie.title}", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this.context, "Clicked on movie: ${movie.title}", Toast.LENGTH_SHORT).show()
         val bundle = Bundle()
         bundle.putString("title", movie.title)
         bundle.putString("description", movie.description)

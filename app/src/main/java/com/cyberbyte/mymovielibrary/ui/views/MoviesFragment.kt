@@ -7,6 +7,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import com.cyberbyte.mymovielibrary.ui.adapters.MovieAdapter
 import com.cyberbyte.mymovielibrary.MovieListener
 import com.cyberbyte.mymovielibrary.R
@@ -26,6 +28,12 @@ class MoviesFragment : Fragment(), DIAware, MovieListener {
     private lateinit var movieAdapter: MovieAdapter
     private val viewModel: MovieViewModel by instance()
 
+    //Pagination variables
+    private var isLoading = false
+    private var isLastPage = false
+    private var currentPage = 1
+    private val PAGE_SIZE = 20
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,13 +52,40 @@ class MoviesFragment : Fragment(), DIAware, MovieListener {
             movieAdapter.updateMovies(movies)
         }
 
-        viewModel.loadMovies()
+        binding.recyclerViewMovie.addOnScrollListener(object: RecyclerView.OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int){
+                super.onScrolled(recyclerView, dx, dy);
+
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val visibleItemCount = layoutManager.childCount
+                val totalItemCount = layoutManager.itemCount
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+
+                if (!isLoading && !isLastPage) {
+                    if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount
+                        && firstVisibleItemPosition >= 0
+                        && totalItemCount >= PAGE_SIZE) {
+                        loadMoreItems()
+                    }
+                }
+            }
+        })
+
+        viewModel.initMoviesList()
 
         return root
     }
 
+    private fun loadMoreItems(){
+        isLoading = true
+        currentPage++
+        viewModel.loadMovies(currentPage)
+        movieAdapter.notifyDataSetChanged()
+        isLoading = false
+    }
+
     override fun onMovieClicked(movie: Movie) {
-        Toast.makeText(this.context, "Clicked on movie: ${movie.title}", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this.context, "Clicked on movie: ${movie.title}", Toast.LENGTH_SHORT).show()
         val bundle = Bundle()
         bundle.putString("title", movie.title)
         bundle.putString("description", movie.description)
