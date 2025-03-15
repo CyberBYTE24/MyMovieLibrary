@@ -10,6 +10,7 @@ import com.cyberbyte.mymovielibrary.MovieRepositoryImpl
 import com.cyberbyte.mymovielibrary.useCases.SaveMoviesToDbUseCase
 import com.cyberbyte.mymovielibrary.data.MovieDao
 import com.cyberbyte.mymovielibrary.data.MovieDatabase
+import com.cyberbyte.mymovielibrary.ui.viewmodels.FavouriteViewModel
 import com.cyberbyte.mymovielibrary.ui.viewmodels.MoviesViewModel
 import com.cyberbyte.mymovielibrary.useCases.GetMovieByIdFromApiUseCase
 import com.cyberbyte.mymovielibrary.useCases.GetMoviesFromApiUseCase
@@ -71,6 +72,7 @@ class MovieApp : Application(), DIAware {
         bind<RemoveMoviesFromDbUseCase>() with singleton { RemoveMoviesFromDbUseCase(instance()) }
 
         bind<MoviesViewModel>() with singleton { MoviesViewModel(instance(), instance(), instance(), instance())  }
+        bind<FavouriteViewModel>() with singleton { FavouriteViewModel(instance(), instance(), instance(), instance())  }
     }
 
 }

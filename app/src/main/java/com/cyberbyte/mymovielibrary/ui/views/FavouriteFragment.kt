@@ -10,11 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.cyberbyte.mymovielibrary.ui.adapters.MovieAdapter
 import com.cyberbyte.mymovielibrary.MovieListener
 import com.cyberbyte.mymovielibrary.R
-import com.cyberbyte.mymovielibrary.ui.viewmodels.MoviesViewModel
-import com.cyberbyte.mymovielibrary.databinding.FragmentMoviesBinding
+import com.cyberbyte.mymovielibrary.databinding.FragmentFavouriteBinding
 import com.cyberbyte.mymovielibrary.models.Movie
 import com.cyberbyte.mymovielibrary.models.Poster
 import com.cyberbyte.mymovielibrary.models.Rating
+import com.cyberbyte.mymovielibrary.ui.viewmodels.FavouriteViewModel
 import org.kodein.di.DI
 import org.kodein.di.DIAware
 import org.kodein.di.android.x.closestDI
@@ -24,16 +24,16 @@ class FavouriteFragment : Fragment(), DIAware, MovieListener {
 
     override val di: DI by closestDI()
 
-    private lateinit var binding: FragmentMoviesBinding
+    private lateinit var binding: FragmentFavouriteBinding
     private lateinit var movieAdapter: MovieAdapter
-    private val viewModel: MoviesViewModel by instance()
+    private val viewModel: FavouriteViewModel by instance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View{
-        binding = FragmentMoviesBinding.inflate(inflater, container, false)
+        binding = FragmentFavouriteBinding.inflate(inflater, container, false)
 
         val root: View = binding.root
 
@@ -73,7 +73,7 @@ class FavouriteFragment : Fragment(), DIAware, MovieListener {
     }
 
     override fun onFavouriteClicked(movie: Movie) {
-        Toast.makeText(this.context, "${if(movie.favourite) "Disliked" else "Liked"} movie: ${movie.title}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this.context, "Movie was ${if(movie.favourite) "disliked" else "liked"}: ${movie.title}", Toast.LENGTH_SHORT).show()
         viewModel.onFavouriteClicked(movie)
         movieAdapter.updateNotify()
     }

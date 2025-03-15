@@ -12,5 +12,9 @@
             android:id="@+id/nav_movies"
             android:icon="@drawable/ic_video_library"
             android:title="@string/movies" />
+        <item
+            android:id="@+id/nav_search"
+            android:icon="@drawable/ic_search"
+            android:title="@string/search" />
     </group>
 </menu>

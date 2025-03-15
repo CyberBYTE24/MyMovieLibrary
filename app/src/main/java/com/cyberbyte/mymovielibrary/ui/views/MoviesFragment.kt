@@ -50,6 +50,9 @@ class MoviesFragment : Fragment(), DIAware, MovieListener {
         viewModel.movies.observe(viewLifecycleOwner) { movies ->
             movieAdapter.updateMovies(movies)
         }
+        binding.searchFab.setOnClickListener{
+            findNavController().navigate(R.id.nav_search)
+        }
 
         binding.recyclerViewMovie.addOnScrollListener(object: RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int){

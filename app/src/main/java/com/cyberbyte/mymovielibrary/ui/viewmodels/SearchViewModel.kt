@@ -1,4 +1,4 @@
-package com.cyberbyte.mymovielibrary
+package com.cyberbyte.mymovielibrary.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 

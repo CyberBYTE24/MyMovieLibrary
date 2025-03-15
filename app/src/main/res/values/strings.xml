@@ -4,6 +4,7 @@
     <string name="favorites">Избранные фильмы</string>">
     <string name="movie_item">Описание фильма</string>">
     <string name="settings">Настройки</string>">
+    <string name="search">Поиск</string>">
     <string name="nav_header_desc">Библиотека фильмов</string>
     <string name="nav_header_title">Библиотека фильмов</string>
     <string name="nav_header_subtitle">Управляй своей коллекцией фильмов</string>

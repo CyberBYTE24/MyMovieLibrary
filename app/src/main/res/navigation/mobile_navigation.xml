@@ -26,7 +26,16 @@
         <action
             android:id="@+id/action_nav_movies_to_nav_movie_item"
             app:destination="@id/nav_movie_item" />
+        <action
+            android:id="@+id/action_nav_movies_to_nav_search"
+            app:destination="@id/nav_search" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_search"
+        android:name="com.cyberbyte.mymovielibrary.ui.views.SearchFragment"
+        android:label="@string/search"
+        tools:layout="@layout/fragment_search"
+        />
     <fragment
         android:id="@+id/nav_movie_item"
         android:name="com.cyberbyte.mymovielibrary.ui.views.MovieItemFragment"
