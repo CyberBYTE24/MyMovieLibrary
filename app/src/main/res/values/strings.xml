@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MyMovieLibrary</string>
-    <string name="movies">Библиотека Кинопоиск</string>">
-    <string name="favorites">Избранное</string>">
+    <string name="movies">ТОП Кинопоиск</string>">
+    <string name="favorites">Избранные фильмы</string>">
     <string name="movie_item">Описание фильма</string>">
     <string name="settings">Настройки</string>">
     <string name="nav_header_desc">Библиотека фильмов</string>

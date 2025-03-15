@@ -8,12 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import com.cyberbyte.mymovielibrary.ui.adapters.MovieAdapter
 import com.cyberbyte.mymovielibrary.MovieListener
 import com.cyberbyte.mymovielibrary.R
-import com.cyberbyte.mymovielibrary.ui.viewmodels.MovieViewModel
-import com.cyberbyte.mymovielibrary.databinding.FragmentMainBinding
+import com.cyberbyte.mymovielibrary.ui.viewmodels.MoviesViewModel
+import com.cyberbyte.mymovielibrary.databinding.FragmentMoviesBinding
 import com.cyberbyte.mymovielibrary.models.Movie
 import org.kodein.di.DI
 import org.kodein.di.DIAware
@@ -24,9 +23,9 @@ class MoviesFragment : Fragment(), DIAware, MovieListener {
 
     override val di: DI by closestDI()
 
-    private lateinit var binding: FragmentMainBinding
+    private lateinit var binding: FragmentMoviesBinding
     private lateinit var movieAdapter: MovieAdapter
-    private val viewModel: MovieViewModel by instance()
+    private val viewModel: MoviesViewModel by instance()
 
     //Pagination variables
     private var isLoading = false
@@ -39,7 +38,7 @@ class MoviesFragment : Fragment(), DIAware, MovieListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View{
-        binding = FragmentMainBinding.inflate(inflater, container, false)
+        binding = FragmentMoviesBinding.inflate(inflater, container, false)
 
         val root: View = binding.root
 

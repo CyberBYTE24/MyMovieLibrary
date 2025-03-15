@@ -12,7 +12,7 @@ import com.cyberbyte.mymovielibrary.useCases.RemoveMoviesFromDbUseCase
 import com.cyberbyte.mymovielibrary.useCases.SaveMoviesToDbUseCase
 import kotlinx.coroutines.launch
 
-class MovieViewModel(
+class FavouriteViewModel(
     private val getMoviesFromApiUseCase: GetMoviesFromApiUseCase,
     private val saveMoviesToDbUseCase: SaveMoviesToDbUseCase,
     private val getMoviesFromDbUseCase: GetMoviesFromDbUseCase,

@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.cyberbyte.mymovielibrary.ui.adapters.MovieAdapter
 import com.cyberbyte.mymovielibrary.MovieListener
 import com.cyberbyte.mymovielibrary.R
-import com.cyberbyte.mymovielibrary.ui.viewmodels.MovieViewModel
-import com.cyberbyte.mymovielibrary.databinding.FragmentMainBinding
+import com.cyberbyte.mymovielibrary.ui.viewmodels.MoviesViewModel
+import com.cyberbyte.mymovielibrary.databinding.FragmentMoviesBinding
 import com.cyberbyte.mymovielibrary.models.Movie
 import com.cyberbyte.mymovielibrary.models.Poster
 import com.cyberbyte.mymovielibrary.models.Rating
@@ -24,16 +24,16 @@ class FavouriteFragment : Fragment(), DIAware, MovieListener {
 
     override val di: DI by closestDI()
 
-    private lateinit var binding: FragmentMainBinding
+    private lateinit var binding: FragmentMoviesBinding
     private lateinit var movieAdapter: MovieAdapter
-    private val viewModel: MovieViewModel by instance()
+    private val viewModel: MoviesViewModel by instance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View{
-        binding = FragmentMainBinding.inflate(inflater, container, false)
+        binding = FragmentMoviesBinding.inflate(inflater, container, false)
 
         val root: View = binding.root
 
